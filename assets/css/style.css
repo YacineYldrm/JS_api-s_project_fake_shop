@@ -69,6 +69,7 @@ body main section {
 body main section figure {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 40px;
   background-color: white;
   padding: 32px;

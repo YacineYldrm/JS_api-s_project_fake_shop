@@ -93,6 +93,7 @@ body
             {
                 display: flex;
                 flex-direction: column;
+                justify-content: space-between;
                 gap: 40px;
                 background-color: white;
                 padding: 32px;
@@ -102,13 +103,13 @@ body
                 div
                 {
                     display: flex;
-
+                    
                     justify-content: space-between;
+                    
                     button
                     {
                         width: 100px;
                     }
-
                 }
             }
             
