@@ -1,0 +1,122 @@
+// ===============================================
+//                GENERALS / RESETS
+// ===============================================
+
+*
+{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+img
+{
+    display: block;
+    width: 100%;
+}
+
+button, select
+{
+    background-color: #F4CE14;
+    border: none;
+    box-shadow: 0px 0px 3px 0px #000000;
+    padding: 8px 24px;
+    transition: all 0.1s ease-in-out;
+    border-radius: 2px;
+
+    &:hover
+    {
+        box-shadow: none;
+    }
+}
+
+body
+{
+    font-family: sans-serif;
+    background-color: #eef0f1;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-inline: 8%;
+
+    h1
+    {
+        width: fit-content;
+        margin-inline: auto;
+        font-size: 3rem;
+        color: black;
+    }
+    
+    nav
+    {
+        background: linear-gradient(60deg, #495e57a2 , #45474B 30%);
+        border-radius: 2px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.362);
+        display: flex;
+        padding: 56px;
+        flex-direction: column;
+        gap: 24px;
+        align-items: center;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        font-size: 18px;
+
+        div
+        {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+
+            p
+            {
+                color: #eef0f1;
+            }
+
+            input 
+            {
+                padding-inline: 8px;
+                height: 34px;
+                width: 300px;
+            }
+        }
+    }
+
+    main
+    {
+        section
+        {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+            font-size: 18px;
+
+            figure
+            {
+                display: flex;
+                flex-direction: column;
+                gap: 40px;
+                background-color: white;
+                padding: 32px;
+                border-radius: 4px;
+                box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.461);
+
+                div
+                {
+                    display: flex;
+
+                    justify-content: space-between;
+                    button
+                    {
+                        width: 100px;
+                    }
+
+                }
+            }
+            
+            img 
+            {
+                height: 280px;
+                object-fit: contain;
+            }
+        }
+    }
+}

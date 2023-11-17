@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS_apis_fake_shop</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <h1>Swift Goods</h1>
+    <nav>
+        <div>
+            <input type="text" name="" class="search-bar" id="searchBarInput" placeholder="Search by title" oninput="searchInput()">
+            <select name="prices" id="selectedOption" onchange="sortBySelect()">
+                <option disabled selected>Sort by Price</option>
+                <option value="priceAsc">Price - Low to High</option>
+                <option value="priceDesc">Price - High to Low</option>
+            </select>
+        </div>
+        <div>
+            <p>Filter by Categories:</p>
+            <button onclick="renderCategoryElec()">electronics</button>
+            <button onclick="renderCategoryJew()">jewelery</button>
+            <button onclick="renderCategoryMen()">men's clothing</button>
+            <button onclick="renderCategoryWomen()">women's clothing</button>
+        </div>
+    </nav>
+    <main>
+        <section id="itemGallery"></section>
+    </main>
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
