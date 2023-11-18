@@ -12,13 +12,14 @@ img {
 button, select {
   background-color: #F4CE14;
   border: none;
-  box-shadow: 0px 0px 3px 0px #000000;
   padding: 8px 24px;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.6745098039);
   border-radius: 2px;
 }
 button:hover, select:hover {
   box-shadow: none;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.6745098039);
 }
 
 body {
@@ -35,7 +36,7 @@ body h1 {
   color: black;
 }
 body nav {
-  background: linear-gradient(60deg, rgba(73, 94, 87, 0.6352941176), #45474B 30%);
+  background: linear-gradient(140deg, rgba(73, 94, 87, 0.862745098), #45474B 30%, rgba(69, 71, 75, 0.7921568627));
   border-radius: 2px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.362);
   display: flex;

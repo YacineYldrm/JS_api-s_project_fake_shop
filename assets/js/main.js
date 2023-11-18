@@ -6,23 +6,27 @@ const itemGallery = document.body.querySelector('#itemGallery');
 const selectedOption = document.body.querySelector('#selectedOption');
 const searchBarInput = document.body.querySelector('#searchBarInput');
 let shopDataArray = [];
+let allProductsKey = 'https://fakestoreapi.com/products';
 
 // =======================================
 //   fetch request ––> get all products
 // =======================================
+const fetchRequest = (apiKey) =>
+{
+    fetch(apiKey)
+        .then(res => res.json())
+        .then(shopData => 
+            {
+                shopDataArray.push(...shopData);
+                renderItems(shopData);
+            });
+}
 
-fetch('https://fakestoreapi.com/products')
-    .then(res => res.json())
-    .then(shopData => 
-        {
-            shopDataArray.push(...shopData);
-            renderItems(shopData);
-        });
+fetchRequest(allProductsKey);
 
 // ======================
 //    search by input
 // ======================
-
 const searchInput = () =>
 {
     const filteredData = shopDataArray.filter(item => 
@@ -39,80 +43,69 @@ const searchInput = () =>
 // ======================
 //   filter by category
 // ======================
-
-const renderCategoryElec = () =>
+const renderCategory = () =>
 {
-    fetch('https://fakestoreapi.com/products/category/electronics')
-        .then(res => res.json())
-        .then(categoryElectronicData => 
+    const allCategoryBtns = document.body.querySelectorAll('button');
+
+    for(const button of allCategoryBtns)
+    {
+        const category = button.textContent.toLocaleLowerCase()
+        button.addEventListener('click', () =>
+        {
+            searchBarInput.value = "";
+            if(category === "electronics")
             {
                 itemGallery.innerHTML = "";
-                renderItems(categoryElectronicData);
-            })
-};
-
-const renderCategoryJew = () =>
-{
-    fetch('https://fakestoreapi.com/products/category/jewelery')
-        .then(res => res.json())
-        .then(categoryJewData => 
+                apiKey = 'https://fakestoreapi.com/products/category/electronics';
+                fetchRequest(apiKey);
+            }
+            else if(category === "jewelery")
             {
                 itemGallery.innerHTML = "";
-                renderItems(categoryJewData);
-            })
-};
-
-const renderCategoryMen = () =>
-{
-    fetch("https://fakestoreapi.com/products/category/men's clothing")
-        .then(res => res.json())
-        .then(categoryMenData => 
+                apiKey = 'https://fakestoreapi.com/products/category/jewelery';
+                fetchRequest(apiKey);
+            }
+            else if(category === "men's clothing")
             {
                 itemGallery.innerHTML = "";
-                renderItems(categoryMenData);
-            })
-};
-
-const renderCategoryWomen = () =>
-{
-    fetch("https://fakestoreapi.com/products/category/women's clothing")
-        .then(res => res.json())
-        .then(categoryWomenData => 
+                apiKey = "https://fakestoreapi.com/products/category/men's clothing";
+                fetchRequest(apiKey);
+            }
+            else if(category === "women's clothing")
             {
                 itemGallery.innerHTML = "";
-                renderItems(categoryWomenData);
-            })
-};
+                apiKey = "https://fakestoreapi.com/products/category/women's clothing";
+                fetchRequest(apiKey);
+            }
+        })
+    }
+}
+
+renderCategory();
 
 // ===================================================
 //    sort by price ––> low to high ––> high to low
 // ===================================================
-
 const sortBySelect = () =>
 {
-    fetch('https://fakestoreapi.com/products?sort=desc')
-        .then(res=>res.json())
-        .then(shopData => {
-            
-            if(selectedOption.value == "priceAsc")
-            {
-                itemGallery.innerHTML = "";
-                shopData.sort((item1, item2) => item1.price - item2.price)
-                renderItems(shopData);
-            }
-            else if (selectedOption.value == "priceDesc")
-            {
-                itemGallery.innerHTML = "";
-                shopData.sort((item1, item2) => item2.price - item1.price)
-                renderItems(shopData);
-            }
-        });
+    searchBarInput.value = "";
+    if(selectedOption.value == "priceAsc")
+    {
+        itemGallery.innerHTML = "";
+        shopDataArray.sort((item1, item2) => item1.price - item2.price)
+        renderItems(shopDataArray);
+    }
+    else if (selectedOption.value == "priceDesc")
+    {
+        itemGallery.innerHTML = "";
+        shopDataArray.sort((item1, item2) => item2.price - item1.price)
+        renderItems(shopDataArray);
+    }
 };
 
 // ======================
 //      render items
 // ======================
-
 const renderItems = (productData) =>
 {
     productData.forEach(singleItem => 

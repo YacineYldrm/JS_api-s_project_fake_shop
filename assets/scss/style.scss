@@ -19,14 +19,15 @@ button, select
 {
     background-color: #F4CE14;
     border: none;
-    box-shadow: 0px 0px 3px 0px #000000;
     padding: 8px 24px;
-    transition: all 0.1s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0px 0px 3px 0px #000000ac;
     border-radius: 2px;
 
     &:hover
     {
         box-shadow: none;
+        box-shadow: 0px 0px 8px 0px #000000ac;
     }
 }
 
@@ -48,7 +49,7 @@ body
     
     nav
     {
-        background: linear-gradient(60deg, #495e57a2 , #45474B 30%);
+        background: linear-gradient(140deg, #495e57dc , #45474B 30%, #45474bca );
         border-radius: 2px;
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.362);
         display: flex;
