@@ -9,7 +9,7 @@
     <nav>
         <div>
             <input type="text" name="" class="search-bar" id="searchBarInput" placeholder="Search by title" oninput="searchInput()">
-            <select name="prices" id="selectedOption" onchange="sortBySelect()">
+            <select name="prices" id="selectedOption">
                 <option disabled selected>Sort by Price</option>
                 <option value="priceAsc">Price - Low to High</option>
                 <option value="priceDesc">Price - High to Low</option>
@@ -17,6 +17,7 @@
         </div>
         <div>
             <p>Filter by Categories:</p>
+            <button>all products</button>
             <button>electronics</button>
             <button>jewelery</button>
             <button>men's clothing</button>

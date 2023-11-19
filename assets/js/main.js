@@ -18,6 +18,7 @@ const fetchRequest = (apiKey) =>
         .then(shopData => 
             {
                 shopDataArray.push(...shopData);
+                sortByPrice(shopData);
                 renderItems(shopData);
             });
 }
@@ -77,30 +78,39 @@ const renderCategory = () =>
                 apiKey = "https://fakestoreapi.com/products/category/women's clothing";
                 fetchRequest(apiKey);
             }
-        })
-    }
-}
+            else if(category === "all products")
+            {
+                itemGallery.innerHTML = "";
+                apiKey = 'https://fakestoreapi.com/products';
+                fetchRequest(apiKey);
+            }
+        });
+    };
+};
 
 renderCategory();
 
 // ===================================================
-//    sort by price ––> low to high ––> high to low
+//    sort by price
 // ===================================================
-const sortBySelect = () =>
+const sortByPrice = (currentDataArray) => 
 {
-    searchBarInput.value = "";
-    if(selectedOption.value == "priceAsc")
+    selectedOption.addEventListener('change', () =>
     {
-        itemGallery.innerHTML = "";
-        shopDataArray.sort((item1, item2) => item1.price - item2.price)
-        renderItems(shopDataArray);
-    }
-    else if (selectedOption.value == "priceDesc")
-    {
-        itemGallery.innerHTML = "";
-        shopDataArray.sort((item1, item2) => item2.price - item1.price)
-        renderItems(shopDataArray);
-    }
+        searchBarInput.value = "";
+        if(selectedOption.value == "priceAsc")
+        {
+            itemGallery.innerHTML = "";
+            currentDataArray.sort((item1, item2) => item1.price - item2.price)
+            renderItems(currentDataArray);
+        }
+        else if (selectedOption.value == "priceDesc")
+        {
+            itemGallery.innerHTML = "";
+            currentDataArray.sort((item1, item2) => item2.price - item1.price)
+            renderItems(currentDataArray);
+        }
+    })
 };
 
 // ======================
@@ -111,6 +121,7 @@ const renderItems = (productData) =>
     productData.forEach(singleItem => 
     {
         const figureElt = document.createElement('figure');
+        const imgDescDiv = document.createElement('div');
         const itemImg = document.createElement('img');
         const itemDesc = document.createElement('figcaption');
         const priceCardDiv = document.createElement('div');
@@ -123,7 +134,8 @@ const renderItems = (productData) =>
         itemImg.setAttribute('alt', singleItem.description);
         priceOutput.textContent = singleItem.price + "€"
         itemDesc.textContent = singleItem.title;
-        figureElt.append(itemImg, itemDesc, priceCardDiv);
+        figureElt.append(imgDescDiv, priceCardDiv);
+        imgDescDiv.append(itemImg, itemDesc);
         priceCardDiv.append(priceOutput, buttonCard);
     });
 };
