@@ -5,8 +5,9 @@
 const itemGallery = document.body.querySelector('#itemGallery');
 const selectedOption = document.body.querySelector('#selectedOption');
 const searchBarInput = document.body.querySelector('#searchBarInput');
-let shopDataArray = [];
+let currentDataArray = [];
 let allProductsKey = 'https://fakestoreapi.com/products';
+searchBarInput.value = "";
 
 // =======================================
 //   fetch request ––> get all products
@@ -17,9 +18,10 @@ const fetchRequest = (apiKey) =>
         .then(res => res.json())
         .then(shopData => 
             {
-                shopDataArray.push(...shopData);
-                sortByPrice(shopData);
-                renderItems(shopData);
+                let shopDataArray = [...shopData];
+                sortByPrice(shopDataArray);
+                renderItems(shopDataArray);
+                currentDataArray = shopDataArray;
             });
 }
 
@@ -30,9 +32,9 @@ fetchRequest(allProductsKey);
 // ======================
 const searchInput = () =>
 {
-    const filteredData = shopDataArray.filter(item => 
+    const filteredData = currentDataArray.filter(item => 
     {
-        if(item.title.toLowerCase().includes(searchBarInput.value.toLowerCase()))
+        if(item.title.toLowerCase().includes(searchBarInput.value.trim().toLowerCase()))
         {
             return item;
         }
@@ -110,7 +112,7 @@ const sortByPrice = (currentDataArray) =>
             currentDataArray.sort((item1, item2) => item2.price - item1.price)
             renderItems(currentDataArray);
         }
-    })
+    });
 };
 
 // ======================
