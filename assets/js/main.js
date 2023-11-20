@@ -21,7 +21,6 @@ const fetchRequest = (apiKey) =>
                 shopDataArray = [...shopData];
                 sortByPrice(shopDataArray);
                 renderItems(shopDataArray);
-                console.log(shopDataArray);
             });
 }
 
